@@ -5,13 +5,10 @@ Inspired by Alessandro Plasmati's Graduate CV LaTex template
 
 ## Requires
 
-The compilation of this project requires the following:
+Compilation of this project requires the following:
 
-|              |                                        |
-| ------------ | -------------------------------------- |
-| Typst CLI    | https://github.com/typst/typst         |
-| Fontin Fonts | https://www.exljbris.com/fontin.html   |
-| Typst-Tablex | https://github.com/PgBiel/typst-tablex |
+- [Typst CLI](https://github.com/typst/typst)
+- [Fontin Fonts](https://www.exljbris.com/fontin.html)
 
 ## Preview
 
@@ -40,4 +37,3 @@ It can also be compiled using as Typst project on [Typst app](https://typst.app/
 ## License
 
 [MIT](https://github.com/vaibhavjhawar/typst-cv-template1/blob/main/LICENSE)
-

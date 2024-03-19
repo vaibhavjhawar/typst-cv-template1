@@ -10,7 +10,6 @@
 // Requires:
 // - Typst CLI (https://github.com/typst/typst/)
 // - Fontin Fonts (http://www.exljbris.com/fontin.html)
-// - Typst-Tablex (https://github.com/PgBiel/typst-tablex)
 // 
 // ==================================================
 
@@ -19,9 +18,6 @@
 // ==================================================
 // Config
 // ==================================================
-
-// tablex Library for Customizing Vertical Lines in Table
-#import "tablex.typ": tablex, vlinex, rowspanx
 
 // Page and Text Setup
 #set page(paper: "a4", margin: (x: 3cm, y: 2cm)) //"us-letter"
@@ -80,18 +76,19 @@
   addr: none,
   desc: none,
   ) = {
-    tablex(
+    v(1.2mm)
+    table(
       columns: (15%, auto),
       align: (right, left),
       row-gutter: -1.75mm,
-      auto-lines: false,
-      stroke: 0.2mm,
-      (), vlinex(expand:-1.25mm),
-      rowspanx(5)[#sc([#date_range])], [#position],
-      (), [#emph(org)],
-      (), [#addr],
-      (), (v(-1.25mm)),
-      (), [#text(size: 9pt, desc)],
+      stroke: none,
+      table.cell(rowspan: 5, inset: (top: 0.25mm))[#sc([#date_range])],
+      table.vline(stroke: 0.25mm),
+      table.cell(inset: (top: 0.25mm))[#position],
+      [#emph(org)],
+      [#addr],
+      (v(-1.25mm)),
+      table.cell(inset: (bottom: 0.25mm))[#text(size: 9pt, desc)],
     )
 }
 
@@ -118,18 +115,16 @@
 }
 
 #let edu(date_range: none, degree: none, grade: none, uni: none, addr: none) = {
-  tablex(
+  table(
     columns: (15%, auto),
     align: (right, left),
     row-gutter: -1.75mm,
-    auto-lines: false,
-    stroke: 0.2mm,
-    // (), vlinex(expand:-3pt),
-    rowspanx(3)[#sc([#date_range])], [#degree #h(2mm)|#h(2mm) #grade],
-    (), [#uni],
-    (), [#addr],
+    stroke: none,
+    table.cell(rowspan: 3)[#sc([#date_range])], [#degree #h(2mm)|#h(2mm) #grade],
+    [#uni],
+    [#addr],
   )
-  v(-1.5mm)
+  v(-3.5mm)
 }
 
 #let project(
@@ -139,18 +134,18 @@
   addr: none,
   desc: none,
   ) = {
-    tablex(
+    table(
       columns: (15%, auto),
       align: (right, left),
       row-gutter: -1.75mm,
-      auto-lines: false,
-      stroke: 0.2mm,
-      (), vlinex(expand:-1.25mm),
-      rowspanx(5)[#sc([#date_range])], [#title],
-      (), [#emph(org)],
-      (), [#addr],
-      (), (v(-1.25mm)),
-      (), [#text(size: 9pt, desc)],
+      stroke: none,
+      table.cell(rowspan: 5, inset: (top: 0.25mm))[#sc([#date_range])],
+      table.vline(stroke: 0.2mm),
+      table.cell(inset: (top: 0.25mm))[#title],
+      [#emph(org)],
+      [#addr],
+      (v(-1.25mm)),
+      table.cell(inset: (bottom: 0.25mm))[#text(size: 9pt, desc)],
     )
 }
 
