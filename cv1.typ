@@ -1,16 +1,16 @@
 // ==================================================
-// 
+//
 // Typst Resume/CV Template
 // https://github.com/vaibhavjhawar/typst-cv-template1
-// 
+//
 // Inspired by Alessandro Plasmati's Graduate CV LaTex template
-// 
+//
 // MIT License
-// 
+//
 // Requires:
 // - Typst CLI (https://github.com/typst/typst/)
 // - Fontin Fonts (http://www.exljbris.com/fontin.html)
-// 
+//
 // ==================================================
 
 
@@ -20,15 +20,28 @@
 // ==================================================
 
 // Page and Text Setup
-#set page(paper: "a4", margin: (x: 3cm, y: 2cm)) //"us-letter"
-#set text(font: "Fontin", size: 10pt)
-#set par(justify: false, leading: 0.45em)
-
+#set document(
+  title: [Firstname Lastname's Resume],
+  author: "Firstname Lastname",
+  keywords: ("resume", "cv", "firstname),
+)
 // SmallCaps Function for Fontin Fonts
 #let sc(body) = {
   set text(font: "Fontin SmallCaps")
   [#body]
 }
+#set page(
+  paper: "a4", //"us-letter"
+  margin: (x: 3cm, y: 2cm),
+)
+#set text(
+  font: "Fontin",
+  size: 10pt,
+)
+#set par(
+  leading: 0.5em,
+  justify: false,
+)
 
 // Full Name Title Function
 #let title(first_name: none, last_name: none) = {
@@ -58,12 +71,14 @@
     gutter: 3mm,
     align(right)[
       #for key in info_dict.keys() {
-        sc(key); linebreak()
+        sc[#key]
+        linebreak()
       }
     ],
     align(left)[
       #for value in info_dict.values() {
-        value; linebreak()
+        value
+        linebreak()
       }
     ],
   )
@@ -75,21 +90,21 @@
   org: none,
   addr: none,
   desc: none,
-  ) = {
-    v(1.2mm)
-    table(
-      columns: (15%, auto),
-      align: (right, left),
-      row-gutter: -1.75mm,
-      stroke: none,
-      table.cell(rowspan: 5, inset: (top: 0.25mm))[#sc([#date_range])],
-      table.vline(stroke: 0.25mm),
-      table.cell(inset: (top: 0.25mm))[#position],
-      [#emph(org)],
-      [#addr],
-      (v(-1.25mm)),
-      table.cell(inset: (bottom: 0.25mm))[#text(size: 9pt, desc)],
-    )
+) = {
+  v(1.2mm)
+  table(
+    columns: (15%, auto),
+    align: (right, left),
+    row-gutter: -1.75mm,
+    stroke: none,
+    table.cell(rowspan: 5, inset: (top: 0.25mm))[#sc[#date_range]],
+    table.vline(stroke: 0.25mm),
+    table.cell(inset: (top: 0.25mm))[#position],
+    [#emph(org)],
+    [#addr],
+    v(-1.25mm),
+    table.cell(inset: (bottom: 0.25mm))[#text(size: 9pt, desc)],
+  )
 }
 
 #let to() = {
@@ -103,12 +118,14 @@
     gutter: 3mm,
     align(right)[
       #for key in skill_dict.keys() {
-        sc(key); linebreak()
+        sc[#key]
+        linebreak()
       }
     ],
     align(left)[
       #for value in skill_dict.values() {
-        value; linebreak()
+        value
+        linebreak()
       }
     ],
   )
@@ -120,7 +137,7 @@
     align: (right, left),
     row-gutter: -1.75mm,
     stroke: none,
-    table.cell(rowspan: 3)[#sc([#date_range])], [#degree #h(2mm)|#h(2mm) #grade],
+    table.cell(rowspan: 3)[#sc[#date_range]], [#degree #h(2mm)|#h(2mm) #grade],
     [#uni],
     [#addr],
   )
@@ -133,20 +150,20 @@
   org: none,
   addr: none,
   desc: none,
-  ) = {
-    table(
-      columns: (15%, auto),
-      align: (right, left),
-      row-gutter: -1.75mm,
-      stroke: none,
-      table.cell(rowspan: 5, inset: (top: 0.25mm))[#sc([#date_range])],
-      table.vline(stroke: 0.2mm),
-      table.cell(inset: (top: 0.25mm))[#title],
-      [#emph(org)],
-      [#addr],
-      (v(-1.25mm)),
-      table.cell(inset: (bottom: 0.25mm))[#text(size: 9pt, desc)],
-    )
+) = {
+  table(
+    columns: (15%, auto),
+    align: (right, left),
+    row-gutter: -1.75mm,
+    stroke: none,
+    table.cell(rowspan: 5, inset: (top: 0.25mm))[#sc[#date_range]],
+    table.vline(stroke: 0.2mm),
+    table.cell(inset: (top: 0.25mm))[#title],
+    [#emph(org)],
+    [#addr],
+    v(-1.25mm),
+    table.cell(inset: (bottom: 0.25mm))[#text(size: 9pt, desc)],
+  )
 }
 
 
@@ -156,20 +173,18 @@
 // ==================================================
 
 #title(
-  first_name: "Firstname",   // this will be Sentence Case, none to omit
-  last_name: "Lastname",  // this will be SmallCaps, none to omit
+  first_name: "Firstname",   // this will be Sentence Case, set as none to omit
+  last_name: "Lastname",  // this will be SmallCaps, set as none to omit
 )
 
 = Personal Data
 
-#info(
-  info_dict: (
-    "Place and Date of Birth:": "Lorem, Amet – Jan 12, 1234",
-    "Address:"                : "Ipsum, XY – 01234 ABC", 
-    "Phone:"                  : link("tel:123456789"),
-    "Email:"                  : link("mailto:email@email.com"),
-  )
-)
+#info(info_dict: (
+  "Place and Date of Birth:": "Lorem, Amet – Jan 12, 1234",
+  "Address:": "Ipsum, XY – 01234 ABC",
+  "Phone:": link("tel:123456789"),
+  "Email:": link("mailto:email@email.com"),
+))
 
 = Work Experience
 
@@ -208,14 +223,12 @@
 
 = Skills
 
-#skill(
-  skill_dict: (
-    "Lectus Sit:"  : "Amet, Placerat, IN, Egestas, Erat, Imperdiet, Euismod",
-    "Nisi Porta:"  : "Lorem, Mollis, Aliquam, UT, Porttitor, Loa, Diam",
-    "Tempor:"      : "Ipsum, Faucibus, Vitae, Aliquet, NEC", 
-    "Ullamcorper:" : "Sitamet, Risus, Nullam, Felis, Eget, Nunc, Lobortis, Mattis",
-  )
-)
+#skill(skill_dict: (
+  "Lectus Sit:": "Amet, Placerat, IN, Egestas, Erat, Imperdiet, Euismod",
+  "Nisi Porta:": "Lorem, Mollis, Aliquam, UT, Porttitor, Loa, Diam",
+  "Tempor:": "Ipsum, Faucibus, Vitae, Aliquet, NEC",
+  "Ullamcorper:": "Sitamet, Risus, Nullam, Felis, Eget, Nunc, Lobortis, Mattis",
+))
 
 = Education
 
