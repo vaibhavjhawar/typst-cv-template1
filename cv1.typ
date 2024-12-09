@@ -23,7 +23,7 @@
 #set document(
   title: [Firstname Lastname's Resume],
   author: "Firstname Lastname",
-  keywords: ("resume", "cv", "firstname),
+  keywords: ("resume", "cv", "firstname"),
 )
 // SmallCaps Function for Fontin Fonts
 #let sc(body) = {
